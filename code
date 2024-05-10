@@ -1,0 +1,42 @@
+int doubleEvens()
+{
+ // Змінні для зберігання розміру масиву та імені файлу
+ const int N = 20;
+ int n = 0;
+ string inputFileName, outputFileName;
+ // Запит користувача на введення імені файлів
+ cout << "Enter the name of the input file: ";
+ cin >> inputFileName;
+ cout << "Enter the name of the output file: ";
+ cin >> outputFileName;
+ // Відкриття вхідного файлу
+ ifstream inputFile(inputFileName);
+ if (!inputFile) {
+ cerr << "Error: Unable to open input file." << endl;
+ return 1;
+ }
+ // Створення масиву, дублювання парних елементів та зчитування даних з файлу
+ int array[N];
+ while (inputFile >> array[n] && n < N)
+ {
+ n++;
+ }
+ inputFile.close(); // Закриття вхідного файлу
+ // Відкриття вихідного файлу
+ ofstream outputFile(outputFileName);
+ if (!outputFile) {
+ cerr << "Error: Unable to open output file." << endl;
+ return 1;
+ }
+ // Запис даних у вихідний файл
+ for (int i = 0; i < n; ++i) {
+ outputFile << array[i] << endl;
+ if (array[i] % 2 == 0) {
+ outputFile << array[i] << endl;
+ }
+ }
+ outputFile.close(); // Закриття вихідного файлу
+ cout << "Transformation complete. Results written to " << outputFileName <<
+endl;
+ return 0;
+}
